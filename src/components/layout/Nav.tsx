@@ -34,7 +34,7 @@ export function Nav() {
             GitHub
           </a>
           <a
-            href="https://github.com/barrydeen/wisp/releases/download/v0.16.0-beta/app-release.apk"
+            href="https://github.com/barrydeen/wisp/releases/download/v0.16.1-beta/app-release.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-[#f97316] px-4 py-1.5 text-sm font-medium text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]"
