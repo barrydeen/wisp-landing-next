@@ -46,7 +46,7 @@ export function Hero() {
         <FadeIn delay={250}>
           <div className="mb-14 flex flex-wrap items-center gap-3">
             <Button
-              href="https://github.com/barrydeen/wisp/releases/download/v0.16.0-beta/app-release.apk"
+              href="https://github.com/barrydeen/wisp/releases/download/v0.16.1-beta/app-release.apk"
               target="_blank"
               rel="noopener noreferrer"
               variant="primary"
