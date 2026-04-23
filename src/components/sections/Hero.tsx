@@ -3,8 +3,6 @@ import { FadeIn } from "@/components/effects/FadeIn";
 import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { GooglePlayIcon, AndroidIcon } from "@/components/ui/BrandIcons";
 
-const GOOGLE_PLAY_URL =
-  "https://play.google.com/store/apps/details?id=com.wisp.app";
 const GITHUB_RELEASES_URL = "https://github.com/barrydeen/wisp/releases/latest";
 
 export function Hero() {
@@ -42,16 +40,18 @@ export function Hero() {
 
           <FadeIn delay={240}>
             <div className="mb-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <Button
-                href={GOOGLE_PLAY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="primary"
-                size="lg"
-              >
-                <GooglePlayIcon size={18} />
-                Get it on Google Play
-              </Button>
+              <div className="relative">
+                <span
+                  aria-disabled="true"
+                  className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-[#322944] bg-[#1a1624] px-7 py-3.5 text-[15px] font-semibold text-[#6b647c] opacity-70"
+                >
+                  <GooglePlayIcon size={18} />
+                  Get it on Google Play
+                </span>
+                <span className="absolute -right-2 -top-2 rounded-full bg-gradient-to-r from-pink to-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0f0d14] shadow-[0_4px_14px_-2px_rgba(255,77,143,0.55)]">
+                  Coming soon
+                </span>
+              </div>
               <Button
                 href={GITHUB_RELEASES_URL}
                 target="_blank"
