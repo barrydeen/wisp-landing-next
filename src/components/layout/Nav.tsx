@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import { GooglePlayIcon } from "@/components/ui/BrandIcons";
+
+const GOOGLE_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.wisp.app";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,13 +37,13 @@ export function Nav() {
         </Link>
 
         <a
-          href="https://github.com/barrydeen/wisp/releases/latest"
+          href={GOOGLE_PLAY_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink via-accent to-yellow px-4 py-2 text-sm font-semibold text-[#0f0d14] shadow-[0_8px_24px_-10px_rgba(255,122,26,0.7)] transition-transform duration-200 hover:-translate-y-0.5"
         >
-          <Download size={14} strokeWidth={2.5} />
-          Get Wisp
+          <GooglePlayIcon size={14} />
+          Google Play
         </a>
       </div>
     </nav>
