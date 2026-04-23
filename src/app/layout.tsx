@@ -64,9 +64,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://wisp.mobile/og-banner.jpg",
-        width: 1200,
-        height: 630,
+        url: "https://wisp.mobile/wisp-og.webp",
+        width: 1400,
+        height: 788,
+        type: "image/webp",
         alt: "Wisp — Social that's actually fun again.",
       },
     ],
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
     title: "Wisp — Social that's actually fun again",
     description:
       "Your group chat, your favorite creators, your money — in one app. Free for Android.",
-    images: ["https://wisp.mobile/og-banner.jpg"],
+    images: ["https://wisp.mobile/wisp-og.webp"],
   },
   alternates: {
     canonical: "https://wisp.mobile",
