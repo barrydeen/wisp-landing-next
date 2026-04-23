@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,46 +8,43 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://wisp.mobile"),
-  title: "Wisp — The Nostr Client for Android | Open Source, No Ads, No Algorithms",
+  title: "Wisp — Social that's actually fun again",
   description:
-    "Wisp is a free, open-source Nostr client for Android. Own your identity with cryptographic keys, send zaps instantly, browse custom feeds, and escape algorithmic manipulation. No ads, no tracking, no censorship. Built on the Nostr protocol.",
+    "Hang with your group chat, follow creators you love, and send money as easily as a like — all in one app. Wisp is a fun, free social app for Android.",
   keywords: [
+    "wisp",
+    "wisp app",
+    "wisp mobile",
+    "social app",
+    "fun social app",
+    "social media",
+    "android social app",
+    "group chat app",
+    "chat rooms",
+    "private messaging",
+    "send money app",
+    "peer to peer payments",
+    "creator app",
+    "video sharing",
+    "photo sharing",
+    "short video app",
+    "no ads social",
+    "no algorithm social",
+    "own your feed",
+    "open source social app",
+    "decentralized social",
+    "censorship resistant",
     "nostr",
     "nostr client",
-    "nostr android",
-    "nostr app",
-    "nostr mobile",
-    "wisp",
-    "wisp nostr",
-    "decentralized social media",
-    "open source social media",
-    "zaps",
     "lightning zaps",
-    "nostr zaps",
-    "NIP-01",
-    "NIP-17",
-    "nostr wallet connect",
-    "NWC",
-    "nostr relay",
-    "relay feeds",
-    "outbox model",
-    "nostr search",
-    "trending nostr",
-    "nostr DMs",
-    "encrypted messages nostr",
-    "nostr protocol",
-    "censorship resistant",
-    "no algorithm social media",
-    "ad free social media",
-    "privacy social media",
-    "open protocol",
-    "npub",
-    "nsec",
-    "nostr keys",
-    "nostr identity",
-    "android nostr client",
   ],
   authors: [{ name: "Barry Deen" }],
   creator: "Barry Deen",
@@ -59,9 +56,9 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Wisp — The Nostr Client for Android",
+    title: "Wisp — Social that's actually fun again",
     description:
-      "Own your identity. Control your feed. Send money instantly. Wisp is a free, open-source Android client for the Nostr protocol — no ads, no algorithms, no censorship.",
+      "Your group chat, your favorite creators, your money — in one app. Download Wisp free for Android.",
     url: "https://wisp.mobile",
     siteName: "Wisp",
     locale: "en_US",
@@ -70,16 +67,16 @@ export const metadata: Metadata = {
         url: "https://wisp.mobile/og-banner.jpg",
         width: 1200,
         height: 630,
-        alt: "Wisp — The Nostr Client for Android. Reject Corporate Media.",
+        alt: "Wisp — Social that's actually fun again.",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wisp — The Nostr Client for Android",
+    title: "Wisp — Social that's actually fun again",
     description:
-      "Own your identity. Control your feed. No ads, no algorithms. A free, open-source Nostr client built for Android.",
+      "Your group chat, your favorite creators, your money — in one app. Free for Android.",
     images: ["https://wisp.mobile/og-banner.jpg"],
   },
   alternates: {
@@ -97,8 +94,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`} suppressHydrationWarning>
-      <body className="min-h-full bg-background text-[#f0f0f0] antialiased">
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceGrotesk.variable} h-full`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full bg-background text-[#f5f1ff] antialiased">
         <div className="noise-overlay" />
         {children}
       </body>

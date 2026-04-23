@@ -1,104 +1,130 @@
-import { Download, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/effects/FadeIn";
-import { ExternalLink } from "lucide-react";
-import { testimonials } from "@/lib/testimonials";
+import { PhoneMockup } from "@/components/ui/PhoneMockup";
+import { GooglePlayIcon, AndroidIcon } from "@/components/ui/BrandIcons";
 
-const featuredEventIds = [
-  "0000025c6560f9e27057d4d3a7c6cfce98f488d5fb84dfcb6cda260a276b140b",
-  "000056e5dc7bc339bf788ff2d97fdc3a47c195c4d0bfde95b8f9d6ba5a25eafa",
-];
+const GOOGLE_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.wisp.app";
+const GITHUB_RELEASES_URL = "https://github.com/barrydeen/wisp/releases/latest";
 
 export function Hero() {
-  const featured = featuredEventIds
-    .map((id) => testimonials.find((t) => t.eventId === id))
-    .filter(Boolean);
-
   return (
-    <section className="relative flex min-h-svh flex-col justify-end px-6 pb-16 pt-24 md:justify-center md:pb-24">
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-1/4 top-0 h-[70vh] w-[70vh] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.04)_0%,transparent_70%)]" />
-        <div className="absolute -left-1/4 bottom-0 h-[50vh] w-[50vh] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.03)_0%,transparent_70%)]" />
+    <section className="relative flex min-h-svh items-center overflow-hidden px-6 pb-20 pt-28 md:pt-32">
+      {/* Ambient color blobs */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="spotlight-pink absolute -left-[10%] top-[10%] h-[55vh] w-[55vh] animate-blob-drift" />
+        <div
+          className="spotlight-orange absolute -right-[5%] top-[25%] h-[60vh] w-[60vh] animate-blob-drift"
+          style={{ animationDelay: "-6s" }}
+        />
+        <div
+          className="spotlight-violet absolute bottom-[-10%] left-[20%] h-[45vh] w-[45vh] animate-blob-drift"
+          style={{ animationDelay: "-12s" }}
+        />
       </div>
 
-      <div className="relative mx-auto w-full max-w-5xl">
-        <FadeIn>
-          <div className="accent-bar mb-8" />
-        </FadeIn>
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <div className="text-center lg:text-left">
+          <FadeIn delay={60}>
+            <h1 className="mb-6 font-display text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.98] tracking-tight text-white">
+              Social that&apos;s{" "}
+              <span className="gradient-text">actually fun</span> again.
+            </h1>
+          </FadeIn>
 
-        <FadeIn delay={50}>
-          <h1 className="mb-6 max-w-4xl text-[clamp(2.5rem,8vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-[#e8e8e8]">
-            Reject{" "}
-            <span className="text-[#555] line-through decoration-[#ef4444] decoration-[3px]">
-              Social
-            </span>{" "}
-            Corporate&nbsp;Media.
-          </h1>
-        </FadeIn>
+          <FadeIn delay={150}>
+            <p className="mx-auto mb-9 max-w-xl text-lg leading-relaxed text-[#c9c3d9] md:text-xl lg:mx-0">
+              Hang with your group chat, follow the creators you love, drop into
+              rooms, and send money as easily as a like —{" "}
+              <span className="text-white">all in one app.</span>
+            </p>
+          </FadeIn>
 
-        <FadeIn delay={150}>
-          <p className="mb-10 max-w-md text-xl leading-relaxed text-[#777] md:text-2xl md:leading-relaxed">
-            Social media is about people, not profits.
-          </p>
-        </FadeIn>
+          <FadeIn delay={240}>
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <Button
+                href={GOOGLE_PLAY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="primary"
+                size="lg"
+              >
+                <GooglePlayIcon size={18} />
+                Get it on Google Play
+              </Button>
+              <Button
+                href={GITHUB_RELEASES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="secondary"
+                size="lg"
+              >
+                <AndroidIcon size={18} />
+                Download APK
+              </Button>
+            </div>
+          </FadeIn>
 
-        <FadeIn delay={250}>
-          <div className="mb-14 flex flex-wrap items-center gap-3">
-            <Button
-              href="https://github.com/barrydeen/wisp/releases/download/v0.16.1-beta/app-release.apk"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-            >
-              <Download size={16} />
-              Download Now
-            </Button>
-            <Button
-              href="https://zapstore.dev/apps/com.wisp.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="secondary"
-            >
-              <ArrowUpRight size={16} />
-              Zapstore
-            </Button>
+          <FadeIn delay={360}>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-[#6b647c] lg:justify-start">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-pink" />
+                No ads
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-violet" />
+                No algorithm
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                Open source
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-yellow" />
+                Free forever
+              </span>
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* Hero phone cluster */}
+        <FadeIn delay={200} className="relative hidden lg:block">
+          <div className="relative mx-auto flex h-[600px] w-full max-w-md items-center justify-center">
+            <div className="absolute left-0 top-10">
+              <PhoneMockup
+                src="/chat.jpg"
+                alt="Wisp chat rooms"
+                accent="violet"
+                tilt={-8}
+              />
+            </div>
+            <div className="absolute right-0 top-24 z-10">
+              <PhoneMockup
+                src="/wallet.jpg"
+                alt="Wisp built-in wallet"
+                accent="yellow"
+                tilt={6}
+              />
+            </div>
+            <div className="relative z-20">
+              <PhoneMockup
+                src="/home.jpg"
+                alt="Welcome to Wisp"
+                accent="pink"
+                tilt={-2}
+              />
+            </div>
           </div>
         </FadeIn>
 
-        {/* Featured testimonials */}
-        <FadeIn delay={400}>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            {featured.map((t) => (
-              <a
-                key={t!.eventId}
-                href={`https://njump.me/${t!.nevent}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex max-w-sm items-start gap-3 rounded-2xl border border-[#111] bg-[#080808] p-4 text-left transition-all duration-300 hover:border-[#1a1a1a]"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={t!.author.picture}
-                  alt={t!.author.displayName}
-                  className="mt-0.5 h-8 w-8 flex-shrink-0 rounded-full object-cover"
-                />
-                <div className="min-w-0">
-                  <p className="text-sm leading-relaxed text-[#888]">
-                    &ldquo;{t!.content}&rdquo;
-                  </p>
-                  <div className="mt-2 flex items-center gap-1.5">
-                    <span className="text-xs text-[#444]">
-                      {t!.author.displayName}
-                    </span>
-                    <ExternalLink
-                      size={10}
-                      className="text-[#333] transition-colors group-hover:text-[#555]"
-                    />
-                  </div>
-                </div>
-              </a>
-            ))}
+        {/* Mobile phone */}
+        <FadeIn delay={300} className="lg:hidden">
+          <div className="flex justify-center">
+            <PhoneMockup
+              src="/home.jpg"
+              alt="Welcome to Wisp"
+              accent="pink"
+            />
           </div>
         </FadeIn>
       </div>

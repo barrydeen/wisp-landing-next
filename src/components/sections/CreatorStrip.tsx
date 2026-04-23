@@ -6,7 +6,7 @@ import { OWNER_PUBKEY, getDisplayName } from "@/lib/nostr";
 import { FadeIn } from "@/components/effects/FadeIn";
 import type { NostrProfile } from "@/types/nostr";
 
-const AVATAR_COUNT = 21;
+const AVATAR_COUNT = 24;
 
 interface AvatarData {
   pubkey: string;
@@ -14,7 +14,7 @@ interface AvatarData {
   picture: string;
 }
 
-export function Community() {
+export function CreatorStrip() {
   const { connected, subscribe } = useNostrPool();
   const [avatars, setAvatars] = useState<AvatarData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,6 @@ export function Community() {
     initialized.current = true;
 
     async function load() {
-      // Fetch follow list
       const follows = new Set<string>();
       await subscribe(
         { kinds: [3], authors: [OWNER_PUBKEY], limit: 1 },
@@ -47,30 +46,29 @@ export function Community() {
       const shuffled = allFollows.slice().sort(() => Math.random() - 0.5);
       const selected = shuffled.slice(0, AVATAR_COUNT);
 
-      // Fetch profiles
       const profiles: Record<string, NostrProfile> = {};
       const profilePubkeys = [
         ...new Set([...selected, ...allFollows.slice(0, 200)]),
       ];
-      await subscribe(
-        { kinds: [0], authors: profilePubkeys },
-        (ev) => {
-          try {
-            const meta = JSON.parse(ev.content) as NostrProfile;
-            const existing = profiles[ev.pubkey];
-            if (
-              !existing ||
-              ev.created_at > ((existing as Record<string, unknown>)._ts as number || 0)
-            ) {
-              profiles[ev.pubkey] = { ...meta, ...({ _ts: ev.created_at } as Record<string, unknown>) } as NostrProfile;
-            }
-          } catch {
-            // ignore
+      await subscribe({ kinds: [0], authors: profilePubkeys }, (ev) => {
+        try {
+          const meta = JSON.parse(ev.content) as NostrProfile;
+          const existing = profiles[ev.pubkey];
+          if (
+            !existing ||
+            ev.created_at >
+              (((existing as Record<string, unknown>)._ts as number) || 0)
+          ) {
+            profiles[ev.pubkey] = {
+              ...meta,
+              ...({ _ts: ev.created_at } as Record<string, unknown>),
+            } as NostrProfile;
           }
+        } catch {
+          // ignore
         }
-      );
+      });
 
-      // Build avatar data
       const items = selected
         .map((pk) => {
           const p = profiles[pk] || {};
@@ -84,9 +82,6 @@ export function Community() {
 
       setAvatars(items);
       setLoading(false);
-
-      // Also subscribe to live feed now that we have profiles
-      // (handled by LiveFeed component)
     }
 
     load();
@@ -96,40 +91,42 @@ export function Community() {
   const dur = Math.max(30, avatars.length * 2.5);
 
   return (
-    <section id="community" className="px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl">
+    <section id="creators" className="relative overflow-hidden px-6 py-20">
+      <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <div className="mb-4">
-            <div className="accent-bar" />
+          <div className="mb-10 flex flex-col items-center text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-mint">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 animate-pulse-dot rounded-full bg-mint" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-mint" />
+              </span>
+              Live on Wisp right now
+            </div>
+            <h2 className="max-w-xl font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-white">
+              People already hanging out.
+            </h2>
+            <p className="mt-3 max-w-md text-[15px] text-[#9d95b3]">
+              These are real humans posting on Wisp, loaded live from the network — in your browser.
+            </p>
           </div>
-          <p className="mb-3 text-[10px] font-medium tracking-[0.25em] text-[#f97316]/70 uppercase">
-            The network
-          </p>
-          <h2 className="mb-3 max-w-lg text-[clamp(1.75rem,5vw,3rem)] font-semibold leading-[1.15] tracking-tight text-[#e8e8e8]">
-            Real people. Loaded live.
-          </h2>
-          <p className="mb-12 max-w-md text-base text-[#555]">
-            These profiles are fetched directly from Nostr relays right now, in your browser.
-          </p>
         </FadeIn>
 
         <div className="relative overflow-hidden">
-          {/* Edge masks */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[#050505] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[#050505] to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#0f0d14] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#0f0d14] to-transparent" />
 
           {loading ? (
-            <div className="flex items-center justify-center gap-3 py-16 text-sm text-[#555]">
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#333] border-t-[#f97316]" />
-              {connected ? "Loading profiles..." : "Connecting to relays..."}
+            <div className="flex items-center justify-center gap-3 py-16 text-sm text-[#6b647c]">
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#322944] border-t-pink" />
+              {connected ? "Loading people..." : "Connecting..."}
             </div>
           ) : avatars.length === 0 ? (
-            <div className="py-16 text-center text-sm text-[#555]">
+            <div className="py-16 text-center text-sm text-[#6b647c]">
               Could not load profiles
             </div>
           ) : (
             <div
-              className="flex gap-8 py-4"
+              className="flex gap-6 py-4"
               style={{
                 animation: `scroll-avatars ${dur}s linear infinite`,
                 width: "max-content",
@@ -140,7 +137,7 @@ export function Community() {
                   key={`${avatar.pubkey}-${i}`}
                   className="flex flex-col items-center gap-2"
                 >
-                  <div className="h-14 w-14 overflow-hidden rounded-full border border-[#1a1a1a] transition-all hover:border-[#333]">
+                  <div className="h-16 w-16 overflow-hidden rounded-[20px] border-2 border-[#322944] transition-all hover:border-pink hover:rotate-[-4deg]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={avatar.picture}
@@ -152,12 +149,12 @@ export function Community() {
                         target.style.display = "none";
                         const parent = target.parentElement;
                         if (parent) {
-                          parent.innerHTML = `<div class="flex h-full w-full items-center justify-center bg-[#1a1a2e] text-sm font-semibold text-[#888]">${avatar.name.charAt(0).toUpperCase()}</div>`;
+                          parent.innerHTML = `<div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#ff4d8f] to-[#9b7bff] text-lg font-bold text-white">${avatar.name.charAt(0).toUpperCase()}</div>`;
                         }
                       }}
                     />
                   </div>
-                  <span className="max-w-[80px] truncate text-xs text-[#888]">
+                  <span className="max-w-[80px] truncate text-xs text-[#9d95b3]">
                     {avatar.name}
                   </span>
                 </div>

@@ -1,11 +1,11 @@
 import { Nav } from "@/components/layout/Nav";
 import { Hero } from "@/components/sections/Hero";
-import { StorySection } from "@/components/sections/StorySection";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Community } from "@/components/sections/Community";
+import { ExperiencesSection } from "@/components/sections/ExperiencesSection";
+import { CreatorStrip } from "@/components/sections/CreatorStrip";
+import { LiveTestimonials } from "@/components/sections/LiveTestimonials";
+import { DecentralizationBonus } from "@/components/sections/DecentralizationBonus";
 import { DownloadCTA } from "@/components/sections/DownloadCTA";
 import { Footer } from "@/components/layout/Footer";
-import { storyBeats } from "@/lib/story";
 
 export default function HomePage() {
   return (
@@ -13,11 +13,10 @@ export default function HomePage() {
       <Nav />
       <main>
         <Hero />
-        {storyBeats.map((beat, i) => (
-          <StorySection key={beat.id} section={beat} index={i} />
-        ))}
-        <Testimonials />
-        <Community />
+        <ExperiencesSection />
+        <CreatorStrip />
+        <LiveTestimonials />
+        <DecentralizationBonus />
         <DownloadCTA />
       </main>
       <Footer />

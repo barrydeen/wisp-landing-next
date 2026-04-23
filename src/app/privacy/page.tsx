@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Wisp",
@@ -9,17 +10,18 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <nav className="flex items-center justify-between border-b border-[#1a1a1a] px-8 py-5">
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          <span className="gradient-text">wisp</span>
+      <nav className="flex items-center justify-between border-b border-[#261f36] px-8 py-5">
+        <Link href="/" className="flex items-center gap-2 text-xl font-display font-bold tracking-tight">
+          <Image src="/wisp-logo.svg" alt="Wisp" width={26} height={26} />
+          <span className="text-white">wisp</span>
         </Link>
       </nav>
 
       <div className="mx-auto max-w-[720px] px-8 pt-16 pb-24">
-        <h1 className="mb-2 text-4xl font-bold tracking-tight">Privacy Policy</h1>
-        <p className="mb-12 text-sm text-[#888]">Last updated: February 28, 2026</p>
+        <h1 className="mb-2 font-display text-4xl font-bold tracking-tight">Privacy Policy</h1>
+        <p className="mb-12 text-sm text-[#9d95b3]">Last updated: February 28, 2026</p>
 
-        <div className="space-y-0 text-[15px] leading-relaxed text-[#888] [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-[#f0f0f0] [&_strong]:text-[#f0f0f0] [&_strong]:font-semibold [&_a]:text-[#f97316] [&_a:hover]:underline [&_ul]:mb-4 [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-2 [&_p]:mb-4">
+        <div className="space-y-0 text-[15px] leading-relaxed text-[#c9c3d9] [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-white [&_strong]:text-white [&_strong]:font-semibold [&_a]:text-accent [&_a:hover]:underline [&_ul]:mb-4 [&_ul]:pl-5 [&_ul]:list-disc [&_li]:mb-2 [&_p]:mb-4">
           <p>
             Wisp (&quot;we&quot;, &quot;our&quot;, &quot;the app&quot;) is an open-source Android client for the Nostr protocol. We are committed to protecting your privacy. This policy explains what data the app handles, how it is used, and your rights.
           </p>
@@ -100,7 +102,7 @@ export default function PrivacyPage() {
         </div>
       </div>
 
-      <footer className="border-t border-[#1a1a1a] py-8 text-center text-sm text-[#888]">
+      <footer className="border-t border-[#261f36] py-8 text-center text-sm text-[#9d95b3]">
         &copy; {new Date().getFullYear()} Wisp
       </footer>
     </>
