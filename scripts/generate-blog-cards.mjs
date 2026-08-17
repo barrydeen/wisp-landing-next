@@ -2,10 +2,11 @@
 /**
  * Renders a branded featured-image card per post into public/blog/cards/.
  *
- * Deliberately does NOT carry the headline: this image sits directly beneath
- * the <h1> on the article page, so repeating the title there would just be the
- * same words twice. The OG card (app/blog/[slug]/opengraph-image.tsx) is the
- * one that needs the headline, because it appears without any surrounding page.
+ * Carries the headline (the short seoTitle form). An earlier version omitted it
+ * to avoid repeating the <h1> on the article page — but that made all fifteen
+ * cards identical apart from an accent colour, so the index grid looked like a
+ * wall of missing images. Distinctness in the grid matters more than the mild
+ * repetition on the article page.
  *
  * Uses the same renderer as the OG route (next/og -> satori), so the two stay
  * visually consistent. Run via `npm run blog:cards`; `prebuild` runs it before
@@ -41,7 +42,14 @@ const FALLBACK_ACCENT = "#ff7a1a";
 
 const el = React.createElement;
 
-function card({ label, accent }) {
+/** Headline sizing: long titles step down so three lines still fit the card. */
+function headlineSize(text) {
+  if (text.length > 46) return 62;
+  if (text.length > 34) return 72;
+  return 82;
+}
+
+function card({ label, accent, headline }) {
   return el(
     "div",
     {
@@ -105,17 +113,40 @@ function card({ label, accent }) {
       ),
     ),
 
+    // The headline is what makes each card distinct in the index grid; without
+    // it every post is the same brand tile and reads as a missing image.
     el(
       "div",
-      { style: { display: "flex", flexDirection: "column" } },
+      {
+        style: {
+          display: "flex",
+          fontFamily: "Space Grotesk",
+          fontSize: headlineSize(headline),
+          lineHeight: 1.12,
+          color: "#f5f1ff",
+          maxWidth: "900px",
+        },
+      },
+      headline,
+    ),
+
+    el(
+      "div",
+      {
+        style: {
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+        },
+      },
       el(
         "div",
-        { style: { display: "flex", fontFamily: "Space Grotesk", fontSize: 132, color: "#f5f1ff", lineHeight: 1 } },
+        { style: { display: "flex", fontFamily: "Space Grotesk", fontSize: 46, color: "#f5f1ff" } },
         "wisp",
       ),
       el(
         "div",
-        { style: { display: "flex", marginTop: "18px", fontFamily: "Inter", fontSize: 30, color: "#6b647c" } },
+        { style: { display: "flex", fontFamily: "Inter", fontSize: 28, color: "#6b647c" } },
         "wisp.mobile",
       ),
     ),
@@ -155,8 +186,11 @@ async function main() {
     const category = String(data.category ?? "");
     const accent = ACCENTS[category] ?? FALLBACK_ACCENT;
     const label = labels.get(category) ?? "Wisp";
+    // seoTitle is the short form (<= 60 chars); the full h1 would wrap to four
+    // or five lines on a 1200x630 card.
+    const headline = String(data.seoTitle ?? data.title ?? "").trim();
 
-    const response = new ImageResponse(card({ label, accent }), {
+    const response = new ImageResponse(card({ label, accent, headline }), {
       ...SIZE,
       fonts: [
         { name: "Space Grotesk", data: display, weight: 700, style: "normal" },
