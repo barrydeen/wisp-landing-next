@@ -1,0 +1,78 @@
+---
+title: "How private messaging works in Wisp"
+description: "A plain-English walkthrough of NIP-17 encryption, where your keys live, and what a relay operator can and cannot see when you send a DM."
+date: "2026-08-12"
+updated: "2026-08-15"
+category: "privacy"
+tags: ["encryption", "nostr", "messaging"]
+image: "/blog/private-messages.jpg"
+imageAlt: "The Wisp direct messages screen on an Android phone."
+faq:
+  - q: "Can relay operators read my Wisp DMs?"
+    a: "No. Message contents are encrypted on your device before they are sent, and relays only ever store ciphertext."
+  - q: "What happens to my messages if I lose my key?"
+    a: "They become unreadable. Your key is the only thing that can decrypt them, and Wisp has no server-side copy to recover from."
+---
+
+**PLACEHOLDER CONTENT.** This post exists to exercise the blog templates,
+metadata, structured data, and table of contents. Replace the body wholesale
+when real content is ready — the frontmatter above shows every field the
+validator accepts.
+
+Most messaging apps ask you to trust a company. Wisp asks you to trust math
+instead. This post walks through exactly what happens when you tap send.
+
+## What happens when you send a message
+
+Your message never leaves your device as readable text. Wisp encrypts it
+locally, wraps it so that even the metadata is obscured, and only then hands the
+result to a relay.
+
+The relay stores an opaque blob. It knows something was published, and roughly
+when, but it cannot read the contents and cannot reliably tell who the recipient
+is.
+
+<Callout tone="info" title="On metadata">
+  Encryption protects contents. Metadata — who talks to whom, and when — is a
+  separate and harder problem. NIP-17 addresses a meaningful part of it, but no
+  system removes metadata entirely.
+</Callout>
+
+## Where your keys live
+
+Your private key is generated on your device and stored in the platform's secure
+storage. It is never transmitted, never backed up to a server, and never visible
+to us, because there is no "us" in the data path.
+
+That has a sharp edge worth stating plainly: losing the key means losing the
+account. Self-custody moves the responsibility to you, and that trade is the
+whole point.
+
+### Exporting your key
+
+You can export your key at any time to move to another Nostr client. Wisp does
+not lock you in, and the account you create here is not really "a Wisp account"
+at all — it is a Nostr identity that happens to be used in Wisp.
+
+## What a relay operator can see
+
+A relay sees an encrypted event, a timestamp, and the network connection that
+delivered it. It does not see your message text, and it cannot produce your
+message text for anyone who asks.
+
+Running your own relay removes even that. Most people will not, and that is a
+reasonable choice — but the option existing at all is what makes the system
+different.
+
+## What this does not protect against
+
+Encryption does not protect a device someone else is holding. If your phone is
+unlocked and in another person's hands, no protocol helps you.
+
+It also does not make anything you post publicly private. A public note is
+public, permanently, on every relay that accepted it.
+
+<CTA
+  heading="Try it yourself"
+  body="Wisp is free, open source, and there is no account to create."
+/>
