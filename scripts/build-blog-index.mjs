@@ -270,6 +270,19 @@ function main() {
       ids.add(entry.id);
     }
 
+    // When FAQs live only in frontmatter, <FaqSection> renders them and the
+    // body has no heading for it — add the entry the component anchors to, or
+    // the TOC stops short of the last section. If the body carries its own FAQ
+    // section, its real headings are already in the TOC.
+    const hasInlineFaq = /^##\s+Frequently Asked Questions/im.test(content);
+    if (!hasInlineFaq && Array.isArray(data.faq) && data.faq.length > 0) {
+      toc.push({
+        id: "frequently-asked-questions",
+        text: "Frequently asked questions",
+        depth: 2,
+      });
+    }
+
     posts.push({
       slug,
       title: String(data.title ?? ""),
@@ -289,6 +302,10 @@ function main() {
       // one is present the template suppresses its own, so a post never ends
       // with two download blocks.
       hasInlineCta: /<CTA[\s/>]/.test(content),
+      // The body's own FAQ section keeps the author's inline links, which a
+      // plain-text frontmatter answer cannot. When present, frontmatter faq[]
+      // is used only to emit FAQPage schema and <FaqSection> stays out.
+      hasInlineFaq,
       toc,
       readingMinutes: readingMinutes(content),
     });

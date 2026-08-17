@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/blog/Breadcrumbs";
 import { PostHeader } from "@/components/blog/PostHeader";
+import { PostHero } from "@/components/blog/PostHero";
 import { FaqSection } from "@/components/blog/FaqSection";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { CTA } from "@/components/blog/CTA";
@@ -105,13 +106,14 @@ export default async function BlogPostPage({
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-12">
         <article className="min-w-0 max-w-[720px]">
           <PostHeader post={post} />
+          <PostHero post={post} />
           {withToc && <TocMobile toc={post.toc} />}
 
           <div className={proseClass}>
             <Content />
           </div>
 
-          <FaqSection faq={post.faq} />
+          {!post.hasInlineFaq && <FaqSection faq={post.faq} />}
           {!post.hasInlineCta && <CTA />}
           <RelatedPosts posts={related} previous={previous} next={next} />
         </article>

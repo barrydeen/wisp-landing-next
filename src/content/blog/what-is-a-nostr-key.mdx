@@ -6,7 +6,16 @@ date: "2026-08-17"
 category: "nostr"
 tags: ["nostr public key", "nostr private key", "npub", "nsec"]
 image: "/blog/what-is-a-nostr-key.jpg"
-imageAlt: "Digital security and encryption concept."
+imageAlt: "Digital security and encryption concept with code"
+faq:
+  - q: "What is a Nostr private key?"
+    a: "A Nostr private key (nsec) is a secret cryptographic code that controls your Nostr identity. It lives only on your device. If someone gets your nsec, they can impersonate you permanently."
+  - q: "Can I recover my Nostr account if I lose my key?"
+    a: "No. There is no forgot password on Nostr. If you lose your nsec, your account is gone forever. Always back up your nsec."
+  - q: "What is NIP-05?"
+    a: "NIP-05 links your npub to an internet domain, giving you a human-readable handle like you@yourdomain.com. It shows a checkmark in most Nostr clients."
+  - q: "Should I share my npub or nsec?"
+    a: "Share your npub freely. Never share your nsec. No legitimate service will ever ask for it."
 ---
 When you create a Nostr account, you don't get a username and password. You get a cryptographic key pair. This is the most important thing to understand about Nostr, and also the thing that scares the most people off.
 
@@ -96,14 +105,26 @@ If you already have a Nostr account from another client, you can import your exi
 
 To import your key: In Wisp's settings, choose "Import existing key" and paste your nsec. Wisp will import your key and start syncing from your relays.
 
+## Frequently Asked Questions
+
+### What is a Nostr private key?
+
+A Nostr private key (nsec) is a secret cryptographic code that controls your Nostr identity. It lives only on your device. If someone gets your nsec, they can impersonate you permanently.
+
+### Can I recover my Nostr account if I lose my key?
+
+No. There is no forgot password on Nostr. If you lose your nsec, your account is gone forever. Always back up your nsec.
+
+### What is NIP-05?
+
+NIP-05 links your npub to an internet domain, giving you a human-readable handle like you@yourdomain.com. It shows a checkmark in most Nostr clients.
+
+### Should I share my npub or nsec?
+
+Share your npub freely. Never share your nsec. No legitimate service will ever ask for it.
+
 <CTA body="Download Wisp on Google Play and we'll handle your keys safely" />
 
 ---
 
 **Related reading:** [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr) | [How to Set Up Your Nostr Profile](/blog/nostr-profile-setup)
-
-## Sources
-- GitHub, nostr-protocol/nostr
-- GitHub, nostr-protocol/nips (NIP-05 specification)
-- GitHub, barrydeen/wisp
-- nostr.how, "Get started with Nostr"

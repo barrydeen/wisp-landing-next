@@ -11,7 +11,12 @@ export function FaqSection({ faq }: FaqSectionProps) {
 
   return (
     <section className="mt-14 border-t border-[#261f36] pt-10">
-      <h2 className="mb-6 scroll-mt-24 font-display text-2xl font-semibold tracking-tight text-white">
+      {/* id matches the synthetic TOC entry the build script appends, so the
+          FAQ is reachable from the table of contents like any other section. */}
+      <h2
+        id="frequently-asked-questions"
+        className="mb-6 scroll-mt-24 font-display text-2xl font-semibold tracking-tight text-white"
+      >
         Frequently asked questions
       </h2>
       <dl className="space-y-4">

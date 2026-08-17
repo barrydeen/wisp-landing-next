@@ -6,7 +6,16 @@ date: "2026-08-17"
 category: "guides"
 tags: ["nostr profile setup", "nip-05", "nostr relay list"]
 image: "/blog/nostr-profile-setup.jpg"
-imageAlt: "Abstract user profile and avatar concept."
+imageAlt: "Abstract user profile and avatar concept"
+faq:
+  - q: "How do I set up a Nostr profile?"
+    a: "Open Wisp, tap your profile icon, then tap edit. Upload a profile picture and banner, write a bio, set your display name, and optionally add NIP-05 verification."
+  - q: "What is NIP-05 and do I need it?"
+    a: "NIP-05 gives you a verified handle. It is not required but helps people verify your identity. Wisp has a built-in setup flow."
+  - q: "Which relays should I use?"
+    a: "Wisp handles relay selection automatically with defaults including relay.damus.io and nos.lol."
+  - q: "How do I get zaps?"
+    a: "Add a Lightning address to your profile. This is entirely optional and Wisp hides it by default in Normie Mode."
 ---
 A bare Nostr profile with a default avatar and no bio is the equivalent of a Twitter egg account. Nobody follows egg accounts. Let's make your profile look like a real person's.
 
@@ -114,14 +123,26 @@ Nostr profiles can include metadata that Wisp surfaces:
 
 That's it. Your profile is ready. Now go post something.
 
+## Frequently Asked Questions
+
+### How do I set up a Nostr profile?
+
+Open Wisp, tap your profile icon, then tap edit. Upload a profile picture and banner, write a bio, set your display name, and optionally add NIP-05 verification.
+
+### What is NIP-05 and do I need it?
+
+NIP-05 gives you a verified handle. It is not required but helps people verify your identity. Wisp has a built-in setup flow.
+
+### Which relays should I use?
+
+Wisp handles relay selection automatically with defaults including relay.damus.io and nos.lol.
+
+### How do I get zaps?
+
+Add a Lightning address to your profile. This is entirely optional and Wisp hides it by default in Normie Mode.
+
 <CTA body="Download Wisp on Google Play and set up your Nostr profile in minutes" />
 
 ---
 
 **Related reading:** [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr) | [What Is a Nostr Key?](/blog/what-is-a-nostr-key) | [Nostr for Beginners](/blog/nostr-for-beginners)
-
-## Sources
-- GitHub, nostr-protocol/nips (NIP-05, NIP-01)
-- GitHub, barrydeen/wisp
-- nostr.how, "Get started with Nostr"
-- nostr-resources.com

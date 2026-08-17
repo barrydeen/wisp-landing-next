@@ -6,7 +6,16 @@ date: "2026-08-17"
 category: "nostr"
 tags: ["nostr protocol", "what is nostr", "relays", "npub"]
 image: "/blog/what-is-nostr.jpg"
-imageAlt: "The Wisp home screen on an Android phone."
+imageAlt: "Abstract technology network visualization"
+faq:
+  - q: "What is Nostr in simple terms?"
+    a: "Nostr is a protocol for social media, like how SMTP is the protocol for email. It is not an app or a company. Your identity is a cryptographic key pair (npub/nsec). Your posts are sent to relays that anyone can run. You can use any Nostr client app to read and post."
+  - q: "Who created Nostr?"
+    a: "Nostr was created in 2022 by a pseudonymous developer named Fiatjaf. Former Twitter CEO Jack Dorsey donated 14 Bitcoin (about $245,000 at the time) to fund development."
+  - q: "Is Nostr only for Bitcoin people?"
+    a: "No. While Nostr was created by a bitcoiner and has native Lightning Network support (zaps), the core features work fine without it. Clients like Wisp have a Normie Mode that defaults to fiat currency."
+  - q: "How is Nostr different from Twitter?"
+    a: "Twitter is a company that controls your account and data. Nostr is a protocol where you control your identity with a cryptographic key. No one can delete your account. Your feed is chronological by default with no algorithm. There are no ads."
 ---
 If you've heard of Nostr, you've probably heard it described in terms that make no sense to a normal person. "It's a decentralized protocol for censorship-resistant global communication using cryptographic key pairs over a relay-based event network." Good luck taking that to dinner conversation.
 
@@ -58,7 +67,7 @@ This matters because a lot of people get the wrong idea.
 
 **Not just for crypto people.** Nostr was created by a bitcoiner and Lightning zaps are a feature, but the core value, owned identity, choice of client, censorship resistance, has nothing to do with cryptocurrency. Wisp's Normie Mode defaults to fiat currency so you never have to think about Bitcoin if you don't want to.
 
-**Not a Twitter clone.** Nostr supports all kinds of content types through NIPs (Nostr Implementation Possibilities). Long-form articles, audio, video, direct messages, calendar events, job listings, new types get added all the time. It's more like a protocol for social applications than a single social network.
+**Not a Twitter clone.** Nostr supports all kinds of content types through [NIP](https://github.com/nostr-protocol/nips)s ([Nostr Implementation Possibilities](https://github.com/nostr-protocol/nips)). Long-form articles, audio, video, direct messages, calendar events, job listings, new types get added all the time. It's more like a protocol for social applications than a single social network.
 
 ## The Apps That Speak Nostr
 
@@ -79,15 +88,26 @@ Nostr has been around since 2022. The tech works. The protocol is solid. What's 
 
 Wisp solves that. Key generation happens automatically. Backup prompts are clear. Relay management is handled for you. The feed is chronological by default. If you know how to use Twitter, you know how to use Wisp. The underlying protocol is the same Nostr that developers love. You just don't have to think about it.
 
+## Frequently Asked Questions
+
+### What is Nostr in simple terms?
+
+Nostr is a protocol for social media, like how SMTP is the protocol for email. It is not an app or a company. Your identity is a cryptographic key pair (npub/nsec). Your posts are sent to relays that anyone can run. You can use any Nostr client app to read and post.
+
+### Who created Nostr?
+
+Nostr was created in 2022 by a pseudonymous developer named Fiatjaf. Former Twitter CEO Jack Dorsey donated 14 Bitcoin (about $245,000 at the time) to fund development.
+
+### Is Nostr only for Bitcoin people?
+
+No. While Nostr was created by a bitcoiner and has native Lightning Network support (zaps), the core features work fine without it. Clients like Wisp have a Normie Mode that defaults to fiat currency.
+
+### How is Nostr different from Twitter?
+
+Twitter is a company that controls your account and data. Nostr is a protocol where you control your identity with a cryptographic key. No one can delete your account. Your feed is chronological by default with no algorithm. There are no ads.
+
 <CTA body="Download Wisp on Google Play and try Nostr the easy way" />
 
 ---
 
 **Related reading:** [Twitter Alternative in 2026](/blog/twitter-alternative) | [Nostr vs Bluesky vs Mastodon](/blog/nostr-vs-bluesky-vs-mastodon) | [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr)
-
-## Sources
-- GitHub, nostr-protocol/nostr
-- GitHub, nostr-protocol/nips
-- Forbes, "Meet @Fiatjaf, The Mysterious Nostr Creator" (2023)
-- Wikipedia, "Nostr"
-- nostr.com, "Clients" documentation

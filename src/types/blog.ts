@@ -31,6 +31,9 @@ export interface PostMeta {
   draft: boolean;
   /** True when the MDX body already renders a <CTA />. */
   hasInlineCta: boolean;
+  /** True when the MDX body has its own "Frequently Asked Questions" section.
+   *  frontmatter faq[] then feeds only the FAQPage schema. */
+  hasInlineFaq: boolean;
   toc: TocEntry[];
   readingMinutes: number;
 }
