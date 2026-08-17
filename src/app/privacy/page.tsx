@@ -3,8 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Wisp",
+  // "— Wisp" now comes from the root layout's title.template.
+  title: "Privacy Policy",
   description: "Privacy policy for Wisp, the Android Nostr client.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

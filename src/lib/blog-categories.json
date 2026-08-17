@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "privacy",
+    "label": "Privacy",
+    "description": "How Wisp keeps your messages, keys, and identity yours — encryption, self-custody, and what we deliberately never collect."
+  },
+  {
+    "slug": "product",
+    "label": "Product",
+    "description": "What we're building in Wisp and why — feed design without algorithms, group chats, zaps, and the decisions behind them."
+  },
+  {
+    "slug": "guides",
+    "label": "Guides",
+    "description": "Practical walkthroughs for getting more out of Wisp and the wider Nostr network, from first login to Lightning payments."
+  }
+]

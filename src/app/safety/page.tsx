@@ -3,9 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Child Safety Standards — Wisp",
+  // "— Wisp" now comes from the root layout's title.template.
+  title: "Child Safety Standards",
   description:
     "Wisp's child safety standards, CSAE prevention policies, and reporting mechanisms.",
+  alternates: { canonical: "/safety" },
 };
 
 export default function SafetyPage() {
