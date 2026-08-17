@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/build-blog-index.mjs",
+    "predev": "node scripts/generate-blog-cards.mjs && node scripts/build-blog-index.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/build-blog-index.mjs",
+    "prebuild": "node scripts/generate-blog-cards.mjs && node scripts/build-blog-index.mjs",
     "build": "next build && node scripts/check-canonicals.mjs",
     "start": "next start",
     "lint": "eslint",
-    "blog:index": "node scripts/build-blog-index.mjs"
+    "blog:index": "node scripts/build-blog-index.mjs",
+    "blog:cards": "node scripts/generate-blog-cards.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
