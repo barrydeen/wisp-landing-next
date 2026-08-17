@@ -1,0 +1,136 @@
+---
+title: "How to Get Started on Nostr in 2026: The No-Jargon Guide for Normal People"
+seoTitle: "How to Get Started on Nostr in 2026"
+description: "Six steps from installing an app to your first post, with no jargon and nothing to sign up for. Keys, relays and follows handled for you."
+date: "2026-08-17"
+category: "guides"
+tags: ["how to use nostr", "nostr sign up", "nostr getting started", "nostr for beginners"]
+image: "/blog/how-to-get-started-on-nostr.jpg"
+imageAlt: "A phone held up above a tree-lined road"
+faq:
+  - q: "How long does it take to set up Nostr?"
+    a: "With Wisp, about 5 minutes. Download the app, generate your key pair automatically, set up your profile, and start following people."
+  - q: "Is Nostr hard to use?"
+    a: "Historically yes, but Wisp changed that with automatic key generation, relay management, and profile setup."
+  - q: "What happens if I lose my phone?"
+    a: "If you backed up your nsec, you can restore your account on a new phone. If not, your account is gone forever."
+  - q: "Can I find my Twitter friends on Nostr?"
+    a: "Nostr has roughly 10,000 monthly active users. Use tools like nostr.directory to find which Twitter users have Nostr accounts."
+  - q: "Do I need Bitcoin to use Nostr?"
+    a: "No. Wisp's Normie Mode hides all Bitcoin features by default."
+---
+Every Nostr tutorial I've ever read assumes you already know what a relay is, what a NIP is, and why you should care about key management. This one doesn't. If you can use Twitter, you can use Nostr. Let me show you how, step by step, in plain language.
+
+## Step 1: Choose a Client (Download Wisp)
+
+Nostr isn't an app. It's a protocol. You need a client app that speaks the protocol. Think of it like email, Gmail is a client for the email protocol (SMTP). Wisp is a client for the Nostr protocol.
+
+Wisp is the easiest client for normal people because it handles all the confusing parts automatically. Normie Mode means you never have to think about Bitcoin or crypto. Key generation happens in the background. Relay management is automatic. The feed is chronological.
+
+**Download Wisp** from Google Play. It's free. No account required.
+
+## Step 2: Create Your Account (Your Keys, Explained Simply)
+
+When you open Wisp for the first time, it generates a cryptographic key pair. This is your Nostr identity. It has two parts:
+
+**Your npub (public key).** This is like your username. Share it with people so they can find you. It looks like npub1abc...def. You can put it in your Twitter bio, your email signature, or send it to friends.
+
+**Your nsec (private key).** This is like your password. Never share it. Never type it into a website. Wisp stores it locally on your phone. If someone gets your nsec, they can impersonate you permanently. There is no "reset password" on Nostr.
+
+**Wisp will prompt you to back up your nsec.** Take this seriously. Write it down on paper. Save it in a password manager. Take a screenshot and store it somewhere safe. If you lose your nsec and lose your phone, you lose your account forever.
+
+This sounds scary, but it's actually simpler than it seems. You only need to think about it once. Wisp handles the rest automatically.
+
+## Step 3: Set Up Your Profile
+
+Tap your profile icon in Wisp. Add:
+
+**A display name.** This is what people see. Your real name, a pseudonym, whatever you want.
+
+**A bio.** Tell people who you are. Doesn't have to be clever.
+
+**A profile picture.** It shows up next to your posts just like any other social app.
+
+**A banner image.** Optional, but makes your profile look complete.
+
+**NIP-05 verification (optional but recommended).** This is Nostr's version of a blue checkmark. It lets you set up a verified handle like you@yourdomain.com. Wisp has a built-in NIP-05 setup flow. It's not required, but it helps people find you and trust that you're not an impersonator.
+
+## Step 4: Find People to Follow
+
+This is the hardest part of any new social network, and Nostr is no exception. The network is small (~10,000 monthly active users as of mid-2026), so you won't find everyone you know from Twitter here.
+
+But the people who are here are worth talking to. Here's how to find them:
+
+**Wisp's suggested accounts.** Wisp includes a list of interesting accounts to follow when you start. Start there.
+
+**Nostr directory sites.** Sites like nostr.directory and nos.social let you search for Nostr users by interest.
+
+**Import your Twitter follows.** Tools like nostr.directory let you find which of your Twitter mutuals are also on Nostr. You connect your Twitter account, and it shows you which of your follows have Nostr accounts.
+
+**Share your npub.** Post it on your other social accounts. "I'm on Nostr now, find me at npub1..." Most people in the Nostr community are welcoming to newcomers and will follow back.
+
+## Step 5: Understand the Feed
+
+Your Wisp feed shows posts from people you follow, in chronological order. Newest at the top. No algorithm deciding what you see. No promoted posts. No suggested content.
+
+That's the default. If you want algorithmic discovery, Wisp has an optional "For You" feed that surfaces trending content from your extended network. But it's opt-in. You choose what kind of feed you want.
+
+## Step 6: Engage (Optional: Add Zaps)
+
+Posting on Nostr works like any other social platform. Type, hit send, done. Your post is signed with your private key and broadcast to the relays Wisp is connected to. People who follow you on those relays will see it.
+
+If you want to support creators or receive tips, Nostr supports Lightning Network zaps. This is Nostr's built-in tipping system. You can send small amounts of Bitcoin to anyone who has a Lightning wallet connected. Wisp supports this, but you don't have to use it. Normie Mode hides everything crypto-related by default.
+
+## Common Beginner Mistakes to Avoid
+
+**Don't share your nsec.** No legitimate service will ever ask for your private key. If a website asks for it, it's a scam.
+
+**Do back up your nsec.** Write it down. Save it in a password manager. Store it in an encrypted note. If you lose it, your account is gone.
+
+**Don't worry about relays.** Wisp handles relay selection automatically. If you eventually want to customize, you can, but you don't need to think about it right now.
+
+**Do use NIP-05.** It's not required, but it makes you look legitimate and helps people find you.
+
+**Don't expect Twitter.** Nostr is different. The community is smaller. The conversation style is different. Give it a week before you decide if you like it.
+
+## Troubleshooting
+
+**My feed is empty.** You need to follow more people. Nostr's value comes from who you follow, not from an algorithm filling your feed with content.
+
+**I can't find someone I know.** They might not be on Nostr yet. Share your npub with them and ask them to join.
+
+**I got a weird message.** Direct messages on Nostr are not end-to-end encrypted by default. Treat DMs like semi-public messages. For private communication, use a dedicated encrypted messaging app.
+
+**I'm seeing spam.** Switch to different relays or use Wisp's built-in content filtering. Spam is a problem on Nostr, but it's being actively worked on.
+
+## Ready?
+
+That's it. You now know enough to use Nostr. Download Wisp, generate your key, follow some people, and start posting. You'll figure out the rest as you go.
+
+## Frequently Asked Questions
+
+### How long does it take to set up Nostr?
+
+With Wisp, about 5 minutes. Download the app, generate your key pair automatically, set up your profile, and start following people.
+
+### Is Nostr hard to use?
+
+Historically yes, but Wisp changed that with automatic key generation, relay management, and profile setup.
+
+### What happens if I lose my phone?
+
+If you backed up your nsec, you can restore your account on a new phone. If not, your account is gone forever.
+
+### Can I find my Twitter friends on Nostr?
+
+Nostr has roughly 10,000 monthly active users. Use tools like nostr.directory to find which Twitter users have Nostr accounts.
+
+### Do I need Bitcoin to use Nostr?
+
+No. Wisp's Normie Mode hides all Bitcoin features by default.
+
+<CTA body="Download Wisp on Google Play and join in under 5 minutes" />
+
+---
+
+**Related reading:** [What Is a Nostr Key?](/blog/what-is-a-nostr-key) | [How to Set Up Your Nostr Profile](/blog/nostr-profile-setup) | [Nostr for Beginners](/blog/nostr-for-beginners)

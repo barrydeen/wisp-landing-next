@@ -25,12 +25,14 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div className="text-center lg:text-left">
-          <FadeIn delay={60}>
-            <h1 className="mb-6 font-display text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.98] tracking-tight text-white">
-              Social that&apos;s{" "}
-              <span className="gradient-text">actually fun</span> again.
-            </h1>
-          </FadeIn>
+          {/* Deliberately NOT wrapped in <FadeIn>: it renders at opacity-0
+              until an IntersectionObserver fires after hydration, and an
+              element at opacity 0 does not count as painted — which made the
+              LCP element of the whole site wait on the client bundle. */}
+          <h1 className="mb-6 font-display text-[clamp(2.75rem,8vw,5.75rem)] font-bold leading-[0.98] tracking-tight text-white">
+            Social that&apos;s{" "}
+            <span className="gradient-text">actually fun</span> again.
+          </h1>
 
           <FadeIn delay={150}>
             <p className="mx-auto mb-9 max-w-xl text-lg leading-relaxed text-[#c9c3d9] md:text-xl lg:mx-0">

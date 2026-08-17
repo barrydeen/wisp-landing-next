@@ -36,15 +36,26 @@ export function Nav() {
           <span className="text-white">wisp</span>
         </Link>
 
-        <a
-          href={GOOGLE_PLAY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink via-accent to-yellow px-4 py-2 text-sm font-semibold text-[#0f0d14] shadow-[0_8px_24px_-10px_rgba(255,122,26,0.7)] transition-transform duration-200 hover:-translate-y-0.5"
-        >
-          <GooglePlayIcon size={14} />
-          Google Play
-        </a>
+        <div className="flex items-center gap-5">
+          {/* Sitewide link to /blog: this is the highest-value internal link on
+              the site — it puts the blog at crawl depth 1 from every page. */}
+          <Link
+            href="/blog"
+            className="text-sm font-medium text-[#9d95b3] transition-colors hover:text-white"
+          >
+            Blog
+          </Link>
+
+          <a
+            href={GOOGLE_PLAY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink via-accent to-yellow px-4 py-2 text-sm font-semibold text-[#0f0d14] shadow-[0_8px_24px_-10px_rgba(255,122,26,0.7)] transition-transform duration-200 hover:-translate-y-0.5"
+          >
+            <GooglePlayIcon size={14} />
+            Google Play
+          </a>
+        </div>
       </div>
     </nav>
   );

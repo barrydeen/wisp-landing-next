@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { OWNER_NPUB } from "@/lib/nostr";
+import { getActiveCategories } from "@/lib/blog";
 
 export function Footer() {
   return (
@@ -11,7 +12,21 @@ export function Footer() {
           <span className="font-display font-semibold text-[#9d95b3]">wisp</span>
           <span>· &copy; {new Date().getFullYear()}</span>
         </div>
-        <div className="flex items-center gap-6 text-sm text-[#9d95b3]">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#9d95b3]">
+          <Link href="/blog" className="transition-colors hover:text-white">
+            Blog
+          </Link>
+          {/* Category links are what pin every post to crawl depth 2, so older
+              posts stay reachable without walking the pagination chain. */}
+          {getActiveCategories().map((category) => (
+            <Link
+              key={category.slug}
+              href={`/blog/category/${category.slug}`}
+              className="text-[#6b647c] transition-colors hover:text-white"
+            >
+              {category.label}
+            </Link>
+          ))}
           <Link href="/privacy" className="transition-colors hover:text-white">
             Privacy
           </Link>

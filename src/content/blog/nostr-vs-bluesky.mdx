@@ -1,0 +1,130 @@
+---
+title: "Nostr vs Bluesky: The Honest Comparison You Haven't Read"
+seoTitle: "Nostr vs Bluesky: The Honest Comparison"
+description: "No hype in either direction. Where Bluesky genuinely beats Nostr, where Nostr wins outright, and a simple way to decide which one fits you."
+date: "2026-08-17"
+category: "alternatives"
+tags: ["nostr vs bluesky", "decentralized social media", "at protocol"]
+image: "/blog/nostr-vs-bluesky.jpg"
+imageAlt: "A person working at a laptop at a desk"
+faq:
+  - q: "What is the difference between Nostr and Bluesky?"
+    a: "Nostr is a protocol with no company. Bluesky is a company building toward decentralization. On Nostr your identity is a key no one can take. Nostr has no ads by design. Bluesky is VC-backed."
+  - q: "Which one should I use?"
+    a: "Use Bluesky for the largest audience. Use Nostr for a permanent identity no company can take. The smart move is to use both."
+  - q: "Is Bluesky decentralized?"
+    a: "Partially. The AT Protocol is designed for decentralization but Bluesky the company still controls the protocol, moderation, and infrastructure."
+  - q: "Can I lose my Nostr account?"
+    a: "Only if you lose your private key. There is no account recovery on Nostr. Back up your nsec carefully."
+---
+Bluesky and Nostr are often lumped together as "the decentralized Twitter alternatives." But they are fundamentally different things. Bluesky is a platform company building toward decentralization. Nostr is a protocol that is decentralized from day one.
+
+This comparison is about the differences that matter when you're deciding where to invest your time and identity.
+
+## The Architecture Difference
+
+The easiest way to understand the difference is to look at how decisions get made.
+
+**Bluesky** operates like a traditional tech company with a decentralized roadmap. The company controls the protocol's development, runs the primary infrastructure, sets the moderation policy, and manages the app stores. The [AT Protocol](https://atproto.com/) is open source, and the company has committed to decentralizing over time. But commitments are not architecture. Today, Bluesky the company can change the platform, block accounts, and modify features unilaterally.
+
+**Nostr** has no company. The protocol is a specification maintained through NIPs (Nostr Implementation Possibilities). Anyone can propose a NIP. Developers discuss, debate, and implement them. No single entity controls the direction. Relays are independently operated. Clients are independently developed. The protocol doesn't ask permission, because there's no one to ask.
+
+This is the difference between "we promise to give you control later" and "you have control now."
+
+## Identity and Portability
+
+Both protocols support portable identity, but they implement it differently.
+
+On **Bluesky**, your identity is a domain-based handle. If you own your domain, you can take it to any provider that supports the AT Protocol. That's a significant improvement over Mastodon's server-tied identity. But most users have handles like @username.bsky.social, meaning Bluesky controls the domain. You can switch to your own domain, but most people don't bother. As of mid-2026, less than 2% of Bluesky users had set up a custom domain.
+
+On **Nostr**, your identity is a cryptographic key pair. Your npub is permanent and independent of any service. No domain renewal. No provider lock-in. No one can revoke it. The tradeoff is that if you lose your private key, you lose your identity permanently. There is no account recovery.
+
+**Advantage: Nostr.** Key-based identity is more sovereign, even if it's less forgiving.
+
+## Moderation and Censorship
+
+**Bluesky** has centralized moderation. The company sets the rules and enforces them. They have been criticized for inconsistent moderation, particularly around political content. In 2025, Bluesky suspended several high-profile accounts for content that was identical to material posted by non-suspended users, leading to accusations of selective enforcement. The AT Protocol is designed to support independent moderation services, but that future hasn't fully arrived. Today, Bluesky can and does remove accounts.
+
+**Nostr** has relay-level moderation. Each relay operator sets their own rules. If a relay bans you, you use a different relay. Your account (your key) is not affected. Spam and illegal content are handled by relay operators, not by a central authority. This is messier and less consistent than centralized moderation. It's also more resistant to censorship.
+
+For example, when a controversial figure was de-platformed from Twitter, Bluesky, and Mastodon simultaneously in 2025, their Nostr account remained active because no single entity could delete it. Individual relays could choose not to carry their content, but the account itself couldn't be removed.
+
+**Advantage: Nostr.** Broader speech protections, but less consistent moderation quality.
+
+## Feed and Discovery
+
+**Bluesky** uses algorithmically ranked feeds by default, with the option to subscribe to custom feeds. The default feed is curated by Bluesky. Custom feeds are user-created and can be powerful discovery tools. The custom feed ecosystem has grown to include thousands of third-party feeds covering every imaginable topic. This is Bluesky's most innovative feature.
+
+**Nostr** defaults to chronological feeds. Some clients (including Wisp) offer optional algorithmic feeds, but they are opt-in. Content discovery depends on your relay selection and the community tools built by client developers. The outbox model, which intelligently routes content based on where your follows are active, improves discovery but adds complexity.
+
+**Advantage: Bluesky.** Better discovery and feed customization. Nostr's chronological model is simpler but requires more work to find new people.
+
+## Monetization and Sustainability
+
+**Bluesky** is venture-backed. The company has raised over $30 million from investors including Neo and other prominent VCs. Venture capital eventually needs a return, typically 10x or more. The likely path is some combination of advertising, premium features, and data licensing. This doesn't mean Bluesky is bad. It means the platform has a revenue requirement that will eventually influence product decisions. Every VC-backed social platform has eventually monetized its users. Bluesky will too.
+
+**Nostr** has no company and no revenue requirement. Lightning zaps provide a peer-to-peer tipping system. Relays can charge for access or operate on donations. The protocol doesn't need to monetize because no one owns it. The economic model is closer to email than to social media, with different providers offering different services in a competitive market.
+
+**Advantage: Nostr.** A protocol without a company behind it cannot be forced to monetize its users.
+
+## Development Velocity
+
+**Bluesky** has a dedicated engineering team funded by venture capital. New features ship regularly. The custom feed infrastructure, starter packs, and quote posts were all delivered on a consistent cadence. Development is fast and focused.
+
+**Nostr** development is volunteer-driven and decentralized. New NIPs take time to discuss, debate, and implement. Different clients adopt features at different speeds. Development is slower but more democratic.
+
+**Advantage: Bluesky.** More resources means faster feature development.
+
+## The Full Comparison Table
+
+| Category | Bluesky | Nostr |
+|---|---|---|
+| **Launched** | 2024 (public) | 2022 |
+| **Protocol** | AT Protocol | Nostr |
+| **Users** | 40M+ | ~10K MAU |
+| **Identity model** | Domain-based | Key-based |
+| **Can you be banned?** | Yes (by Bluesky) | No (structurally impossible) |
+| **Onboarding friction** | Low | Medium (key backup) |
+| **Default feed** | Algorithmic | Chronological |
+| **Custom feeds** | Yes (rich ecosystem) | Limited (client-dependent) |
+| **Native payments** | No | Yes (Lightning zaps) |
+| **Ads** | Planned (future) | Impossible |
+| **Open governance?** | No (Bluesky-led) | Yes (NIP process) |
+| **Client diversity** | Single official client | Dozens of clients |
+| **Venture funding** | $30M+ | $0 |
+| **Feature velocity** | Fast | Slow to moderate |
+| **Best client** | Bluesky official | Wisp (Android) |
+
+## Should You Use One or Both?
+
+Here's my honest take.
+
+Bluesky is where the people are. If you want to reach an audience, discover new content, and participate in the broader social media conversation, Bluesky is the better choice today. It's a well-built product that improves on Twitter in real ways. The only question is whether Bluesky the company will make the right long-term decisions when the pressure to monetize arrives.
+
+Nostr is where your identity is safe. If you want a permanent social identity that no company can take from you, Nostr is the only real option. The tradeoff is a smaller community and a less polished experience. Clients like Wisp are narrowing the gap, but Nostr's network effects are years behind Bluesky's.
+
+The smart move is to use both. Keep Bluesky for reach and discovery. Use Nostr for your permanent identity and the communities that matter most to you. They're not mutually exclusive. They serve different needs.
+
+## Frequently Asked Questions
+
+### What is the difference between Nostr and Bluesky?
+
+Nostr is a protocol with no company. Bluesky is a company building toward decentralization. On Nostr your identity is a key no one can take. Nostr has no ads by design. Bluesky is VC-backed.
+
+### Which one should I use?
+
+Use Bluesky for the largest audience. Use Nostr for a permanent identity no company can take. The smart move is to use both.
+
+### Is Bluesky decentralized?
+
+Partially. The AT Protocol is designed for decentralization but Bluesky the company still controls the protocol, moderation, and infrastructure.
+
+### Can I lose my Nostr account?
+
+Only if you lose your private key. There is no account recovery on Nostr. Back up your nsec carefully.
+
+<CTA body="Download Wisp on Google Play and claim your permanent identity" />
+
+---
+
+**Related reading:** [Nostr vs Bluesky vs Mastodon](/blog/nostr-vs-bluesky-vs-mastodon) | [Bluesky Alternative in 2026?](/blog/bluesky-alternative) | [What Is Nostr?](/blog/what-is-nostr)

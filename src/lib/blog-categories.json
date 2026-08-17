@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "alternatives",
+    "label": "Alternatives",
+    "description": "Honest comparisons between Nostr, Bluesky, Mastodon, and the platforms you are trying to leave — what each one actually gives you, and what it quietly keeps."
+  },
+  {
+    "slug": "nostr",
+    "label": "Nostr Explained",
+    "description": "Plain-English explanations of how Nostr works: keys, relays, zaps, and why owning your identity changes what social media can be."
+  },
+  {
+    "slug": "guides",
+    "label": "Guides",
+    "description": "Step-by-step walkthroughs for getting onto Nostr and getting more out of it — signing up, setting up a profile, and choosing the right client."
+  },
+  {
+    "slug": "wellbeing",
+    "label": "Digital Wellbeing",
+    "description": "Algorithm fatigue, burnout, and social media detox — why feeds feel the way they do, and what changes when you switch instead of quitting."
+  }
+]
