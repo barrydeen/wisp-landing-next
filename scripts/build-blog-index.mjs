@@ -12,8 +12,16 @@
  * Post *bodies* are never read by the app. They enter the bundle as compiled
  * modules via `await import("@/content/blog/<slug>.mdx")`.
  */
-import { readFileSync, readdirSync, existsSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import {
+  readFileSync,
+  readdirSync,
+  existsSync,
+  writeFileSync,
+  copyFileSync,
+  unlinkSync,
+} from "node:fs";
+import { createHash } from "node:crypto";
+import { dirname, join, resolve, extname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import GithubSlugger from "github-slugger";
@@ -108,6 +116,59 @@ function extractToc(markdown, file) {
   }
 
   return toc;
+}
+
+/**
+ * Rewrites a local image path to a content-addressed one:
+ *   /blog/what-is-nostr.jpg -> /blog/what-is-nostr.4f2a9c31.jpg
+ *
+ * Swapping an image without renaming it leaves the URL identical while the
+ * bytes change, so browsers and Cloudflare keep serving the old picture — a
+ * silent failure that looks like the deploy didn't work. Hashing the filename
+ * makes every change produce a new URL, so a stale image is impossible.
+ * (next/image rejects a ?v= query on local paths, so it has to be the name.)
+ *
+ * The hashed copies are generated, not committed; see .gitignore.
+ */
+function hashedImagePath(imagePath, generated) {
+  if (!imagePath.startsWith("/")) return imagePath;
+
+  const source = join(PUBLIC_DIR, imagePath);
+  if (!existsSync(source)) return imagePath;
+
+  const hash = createHash("sha256")
+    .update(readFileSync(source))
+    .digest("hex")
+    .slice(0, 8);
+
+  const ext = extname(imagePath);
+  const dir = dirname(imagePath);
+  const base = basename(imagePath, ext);
+  const hashedName = `${base}.${hash}${ext}`;
+  const target = join(PUBLIC_DIR, dir, hashedName);
+
+  if (!existsSync(target)) copyFileSync(source, target);
+  generated.add(target);
+
+  return `${dir}/${hashedName}`;
+}
+
+/** Drops hashed copies whose source has since changed, so public/ doesn't grow
+ *  a new file on every image swap. */
+function pruneStaleHashes(keep) {
+  const dir = join(PUBLIC_DIR, "blog");
+  if (!existsSync(dir)) return 0;
+  let removed = 0;
+  for (const name of readdirSync(dir)) {
+    // Only hashed copies: name.<8 hex>.ext
+    if (!/\.[0-9a-f]{8}\.[a-z0-9]+$/i.test(name)) continue;
+    const full = join(dir, name);
+    if (!keep.has(full)) {
+      unlinkSync(full);
+      removed += 1;
+    }
+  }
+  return removed;
 }
 
 function readingMinutes(markdown) {
@@ -245,6 +306,7 @@ function main() {
 
   const posts = [];
   const seen = new Map();
+  const generatedImages = new Set();
 
   for (const name of files) {
     const slug = name.replace(/\.mdx$/, "");
@@ -292,7 +354,7 @@ function main() {
       updated: String(data.updated ?? data.date ?? ""),
       category: String(data.category ?? ""),
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-      image: String(data.image ?? ""),
+      image: hashedImagePath(String(data.image ?? ""), generatedImages),
       imageAlt: String(data.imageAlt ?? ""),
       faq: Array.isArray(data.faq)
         ? data.faq.map((f) => ({ q: String(f?.q ?? ""), a: String(f?.a ?? "") }))
@@ -345,9 +407,13 @@ export const postIndex: PostMeta[] = ${JSON.stringify(posts, null, 2)};
 
   writeFileSync(OUT_FILE, body, "utf8");
 
+  const pruned = pruneStaleHashes(generatedImages);
   const published = posts.filter((p) => !p.draft).length;
   console.log(
     `✓ blog index: ${published} published, ${posts.length - published} draft → src/lib/blog-index.generated.ts`,
+  );
+  console.log(
+    `✓ blog images: ${generatedImages.size} content-hashed${pruned ? `, ${pruned} stale removed` : ""}`,
   );
 }
 
