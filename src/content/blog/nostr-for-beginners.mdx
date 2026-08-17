@@ -1,0 +1,104 @@
+---
+title: "Nostr for Beginners: Understanding Relays, Zaps, and Why This Social Network Is Actually Yours"
+seoTitle: "Nostr for Beginners: Relays and Zaps"
+description: "What relays actually do, how zaps work, and the five mistakes new users make. Everything worth knowing before your first week on Nostr."
+date: "2026-08-17"
+category: "nostr"
+tags: ["nostr for beginners", "nostr relay", "zaps", "how to use nostr"]
+image: "/blog/nostr-for-beginners.jpg"
+imageAlt: "Open book on a wooden table."
+---
+There's a lot of jargon in the Nostr world. Relays. NIPs. Zaps. Outbox model. Blossom servers. It's enough to make a normal person close the tab and go back to Instagram.
+
+Most of it you don't actually need to know. But a few concepts are worth understanding because they explain why Nostr is different from every other social network. Here's what you actually need to know as a beginner.
+
+## Relays Explained (Think: Different Cafes, Same Conversation)
+
+A relay is just a server that accepts Nostr posts and forwards them to other users. That's it.
+
+Think of relays like cafes in different parts of town. You might post on a bulletin board at Cafe A. Your friends check Cafe A and Cafe B and Cafe C. If you post on Cafe A, your friends see it if they check Cafe A. If you also post on Cafe B, your friends there see it too.
+
+That's all a relay does. It stores your posts and shares them with people connected to that same relay.
+
+**Why multiple relays?** Redundancy. If one relay goes down, your posts still exist on other relays. Also reach, different communities cluster around different relays. Connecting to multiple relays means you see more of the network.
+
+**Do you need to manage relays?** No. Wisp handles this automatically. It uses intelligent routing to connect to the relays where the people you follow are active. You only need to think about relays if you want to.
+
+**Can you run your own relay?** Yes. It's a single binary you can run on a $5 VPS. But you don't need to. The public relay ecosystem is robust enough.
+
+## Zaps Explained (Twitter Tips, But Better)
+
+Zaps are Nostr's native tipping system. They use the Lightning Network, which is a Bitcoin payment layer designed for instant, near-zero-fee transactions.
+
+When someone sends you a zap, you get a small amount of Bitcoin. It could be a few cents or a few dollars. The sender can attach a message. Your client shows the zap on your post as a reaction, a little lightning bolt icon with the amount.
+
+**Why zaps matter:**
+
+- **They're peer-to-peer.** No platform takes a cut. No payment processor skims 30%. If someone sends you $1, you get $1.
+- **They're built into the protocol.** Nostr doesn't need to add a "tips" feature later. It's there from day one.
+- **They change the incentive.** On algorithmic platforms, creators optimize for engagement. On Nostr, creators can optimize for value, because appreciative readers can zap them directly.
+
+**Do you need to use zaps?** No. Wisp's Normie Mode hides all Bitcoin-related features by default. You can use Nostr for years without ever sending or receiving a zap. But if you want to support creators you like, zaps are the cleanest way to do it.
+
+**How to set up zaps (if you want to):**
+
+1. Get a Lightning wallet. Wallet of Satoshi (simple) or Phoenix (more control) are good starting points.
+2. Get a Lightning address. Services like GetAlby or Coinos give you `you@getalby.com`.
+3. Add your Lightning address to your Nostr profile in Wisp settings.
+
+That's it. People can now zap you. You can zap them.
+
+## Your Feed, Your Rules
+
+On Nostr, you control what you see. Not an algorithm. Not a content team. Not a recommendation system.
+
+**Chronological feed.** This is the default. Posts from people you follow, in the order they sent them. No ranking, no boosting, no suppression.
+
+**Mute and block.** You can mute words, mute users, or block users entirely. These filters apply on your client, not on the relay. Other people won't know you muted them.
+
+**Relay selection.** If you find that a particular relay has too much spam, you can disconnect from it. If you find a relay that has great content about your interests, you can add it. Your feed changes accordingly.
+
+**For You feed (optional).** Wisp has an algorithmic "For You" feed that surfaces trending content from your extended network. It's off by default. You can turn it on if you want algorithmic discovery. You decide.
+
+## The "Content Discovery" Question
+
+The most common complaint about Nostr from beginners is "I don't know who to follow."
+
+This is real. Nostr doesn't have an algorithm feeding you content from strangers. You have to find people intentionally.
+
+**How to find people:**
+
+- **Starter packs.** Nostr community members create curated lists of accounts to follow by topic. Wisp includes a few to get you started.
+- **Follow people who post good content.** When someone posts something interesting, look at who they follow. Follow those people too.
+- **Use directory sites.** Nostr.directory and nos.social let you search for users.
+- **Post your npub on other platforms.** "I'm on Nostr! Find me at npub1..."
+- **Check trending relays.** Some relays surface popular content that can lead you to interesting accounts.
+
+The discovery problem is the biggest weakness of the chronological model. It's also its biggest strength, when you find good people, your feed is genuinely good, not algorithmically optimized for engagement.
+
+## Common Beginner Mistakes
+
+1. **Losing your nsec.** Back it up. Write it down. Save it in a password manager. You cannot recover it.
+2. **Sharing your nsec.** No legitimate service asks for it. If someone does, they're trying to steal your account.
+3. **Expecting Twitter.** Nostr is smaller, slower, and more intentional. That's the point. Give it time.
+4. **Connecting to too many relays.** More relays doesn't mean better content. A few good relays is better than dozens of noisy ones. Wisp handles this automatically.
+5. **Not using NIP-05.** It's optional but makes you look real. Takes five minutes.
+
+## Ready to Try It?
+
+Nostr is not for everyone. If you want a firehose of trending content and algorithmically optimized entertainment, stick with the mainstream platforms. Nostr is for people who want to own their identity, control their feed, and be part of a community that values the protocol over the platform.
+
+If that sounds like you, download Wisp and give it a week. You might find it's the social network you've been looking for.
+
+<CTA body="Download Wisp on Google Play and try the social network that's actually yours" />
+
+---
+
+**Related reading:** [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr) | [What Is a Nostr Key?](/blog/what-is-a-nostr-key) | [Why Wisp Matters](/blog/why-nostr-clients-matter)
+
+## Sources
+- GitHub, nostr-protocol/nostr
+- GitHub, nostr-protocol/nips
+- GitHub, barrydeen/wisp
+- Profilestr Nostr Activity Reports, July 2026
+- nostr.how documentation

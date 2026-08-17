@@ -12,7 +12,11 @@ export interface TocEntry {
 
 export interface PostMeta {
   slug: string;
+  /** The on-page <h1>. May run long; schema.org caps headline at 110 chars. */
   title: string;
+  /** The <title> tag. Falls back to `title` when frontmatter omits it — set it
+   *  when the headline is too long to survive SERP truncation (~60 chars). */
+  seoTitle: string;
   description: string;
   /** ISO date, YYYY-MM-DD. */
   date: string;
@@ -25,6 +29,8 @@ export interface PostMeta {
   imageAlt: string;
   faq: PostFaq[];
   draft: boolean;
+  /** True when the MDX body already renders a <CTA />. */
+  hasInlineCta: boolean;
   toc: TocEntry[];
   readingMinutes: number;
 }

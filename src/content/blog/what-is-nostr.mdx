@@ -1,0 +1,93 @@
+---
+title: "What Is Nostr? A Simple Explanation for People Who Just Want Better Social Media"
+seoTitle: "What Is Nostr? A Simple Explanation"
+description: "Nostr is to social media what email is to your inbox: a protocol, not a company. How keys, relays and clients fit together, in plain English."
+date: "2026-08-17"
+category: "nostr"
+tags: ["nostr protocol", "what is nostr", "relays", "npub"]
+image: "/blog/what-is-nostr.jpg"
+imageAlt: "The Wisp home screen on an Android phone."
+---
+If you've heard of Nostr, you've probably heard it described in terms that make no sense to a normal person. "It's a decentralized protocol for censorship-resistant global communication using cryptographic key pairs over a relay-based event network." Good luck taking that to dinner conversation.
+
+Here's the simple version: Nostr is to social media what email is to your inbox. Email isn't Gmail. Email is the protocol, SMTP, that lets you send messages from Gmail to Outlook to ProtonMail to your own server. Anyone can build an email app, and they all work together because they speak the same protocol.
+
+Nostr is like that, but for social media posts instead of emails.
+
+## The 30-Second Explanation
+
+Nostr stands for "Notes and Other Stuff Transmitted by Relays." It was created in 2022 by a pseudonymous developer named Fiatjaf, who wrote the spec in a single day. Former Twitter CEO Jack Dorsey donated 14 Bitcoin (about $245,000 at the time) to fund development.
+
+The core idea is brutally simple. Instead of one company running the whole show, there are three independent layers:
+
+- **A key pair**, your identity is a cryptographic public/private key. No one can take it from you.
+- **Relays**, anyone can run a relay, which is just a server that accepts and forwards Nostr messages. Like bulletin boards in different cafes.
+- **Clients**, any app that reads from and writes to relays. Wisp, Damus, Amethyst, Primal, and dozens more.
+
+You can use any client with any relay. You can switch clients and keep your identity. You can switch relays and keep your network. Nothing is locked in.
+
+## How Nostr Works (Still Simple)
+
+Let's walk through it.
+
+**Step 1: Create your identity.** Your Nostr client generates a key pair. The public key (npub) is your address. Share it like a username. The private key (nsec) is your secret. Never share it. Your client stores it locally. No server ever sees it.
+
+**Step 2: Post something.** Your client signs your post with your private key and sends it to one or more relays. The relay stores it and shares it with other users connected to that relay.
+
+**Step 3: Read your feed.** Your client queries the relays you're connected to for posts from people you follow. It assembles them into a feed. Because there's no central algorithm, the default is chronological.
+
+That's it. The protocol is deliberately minimal. It doesn't define how feeds work, how profiles look, or how discovery happens. Those are left to clients and relays. This openness is why Nostr has so many different apps and why new features appear all the time, anyone can build them without asking permission.
+
+## What Makes Nostr Special
+
+**You own your identity.** Your npub is permanent. It can't be taken away. It can't be suspended. It can't be deleted. On every other social platform, your account is rented from the company. On Nostr, you own it.
+
+**No company can change the rules.** Twitter can update its terms of service. Meta can change its algorithm. Bluesky can shift its moderation policy. Nostr can't do any of that because there's no company to make the decision. The protocol is open and changes only when the community agrees.
+
+**You choose your experience.** You pick which client to use, which relays to connect to, and which algorithm (if any) to sort your feed. If you don't like your client, switch to a different one. Your followers and posts come with you.
+
+**Zaps are built in.** Nostr has native support for Lightning Network micropayments, called zaps. You can send small amounts of Bitcoin to support creators. It's like Twitter tips, but without a payment processor taking a cut and without the regulatory overhead. Not everyone uses zaps, but they exist for those who want them.
+
+## What Nostr Is NOT
+
+This matters because a lot of people get the wrong idea.
+
+**Not a website.** Nostr is a protocol. There's no nostr.com that you sign up at. You use a client app that speaks the protocol. The protocol stays the same regardless of which app you use.
+
+**Not a company.** There is no Nostr Inc. No CEO. No board. No investors demanding growth at any cost. Fiatjaf is pseudonymous and has explicitly said they don't want to run a company.
+
+**Not just for crypto people.** Nostr was created by a bitcoiner and Lightning zaps are a feature, but the core value, owned identity, choice of client, censorship resistance, has nothing to do with cryptocurrency. Wisp's Normie Mode defaults to fiat currency so you never have to think about Bitcoin if you don't want to.
+
+**Not a Twitter clone.** Nostr supports all kinds of content types through NIPs (Nostr Implementation Possibilities). Long-form articles, audio, video, direct messages, calendar events, job listings, new types get added all the time. It's more like a protocol for social applications than a single social network.
+
+## The Apps That Speak Nostr
+
+There are clients for every platform:
+
+- **Wisp** (Android), the easiest way to get started. Normie Mode, intelligent relay routing, Material 3 design.
+- **Damus** (iOS), the original Nostr client for iPhone.
+- **Amethyst** (Android), feature-packed but more complex.
+- **Primal** (iOS, web), polished UX, but some concerns about centralization.
+- **Snort** (web), good power-user client.
+- **Iris** (web), clean interface for desktop.
+
+Each client has a different philosophy. Wisp focuses on simplicity and lowering the barrier for new users. That's why it has Normie Mode, automatic relay management, and a clean interface that doesn't assume you know what a relay is.
+
+## Why Wisp Makes the Difference
+
+Nostr has been around since 2022. The tech works. The protocol is solid. What's been missing is a client that normal people can use without a tutorial.
+
+Wisp solves that. Key generation happens automatically. Backup prompts are clear. Relay management is handled for you. The feed is chronological by default. If you know how to use Twitter, you know how to use Wisp. The underlying protocol is the same Nostr that developers love. You just don't have to think about it.
+
+<CTA body="Download Wisp on Google Play and try Nostr the easy way" />
+
+---
+
+**Related reading:** [Twitter Alternative in 2026](/blog/twitter-alternative) | [Nostr vs Bluesky vs Mastodon](/blog/nostr-vs-bluesky-vs-mastodon) | [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr)
+
+## Sources
+- GitHub, nostr-protocol/nostr
+- GitHub, nostr-protocol/nips
+- Forbes, "Meet @Fiatjaf, The Mysterious Nostr Creator" (2023)
+- Wikipedia, "Nostr"
+- nostr.com, "Clients" documentation

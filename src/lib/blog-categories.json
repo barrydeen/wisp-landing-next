@@ -1,17 +1,22 @@
 [
   {
-    "slug": "privacy",
-    "label": "Privacy",
-    "description": "How Wisp keeps your messages, keys, and identity yours — encryption, self-custody, and what we deliberately never collect."
+    "slug": "alternatives",
+    "label": "Alternatives",
+    "description": "Honest comparisons between Nostr, Bluesky, Mastodon, and the platforms you are trying to leave — what each one actually gives you, and what it quietly keeps."
   },
   {
-    "slug": "product",
-    "label": "Product",
-    "description": "What we're building in Wisp and why — feed design without algorithms, group chats, zaps, and the decisions behind them."
+    "slug": "nostr",
+    "label": "Nostr Explained",
+    "description": "Plain-English explanations of how Nostr works: keys, relays, zaps, and why owning your identity changes what social media can be."
   },
   {
     "slug": "guides",
     "label": "Guides",
-    "description": "Practical walkthroughs for getting more out of Wisp and the wider Nostr network, from first login to Lightning payments."
+    "description": "Step-by-step walkthroughs for getting onto Nostr and getting more out of it — signing up, setting up a profile, and choosing the right client."
+  },
+  {
+    "slug": "wellbeing",
+    "label": "Digital Wellbeing",
+    "description": "Algorithm fatigue, burnout, and social media detox — why feeds feel the way they do, and what changes when you switch instead of quitting."
   }
 ]

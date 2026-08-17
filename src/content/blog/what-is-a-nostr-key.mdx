@@ -1,0 +1,109 @@
+---
+title: "What Is a Nostr Key? A Beginner's Guide to npub, nsec, and Why You Need to Keep Them Safe"
+seoTitle: "What Is a Nostr Key? npub and nsec"
+description: "Your npub is your address; your nsec is a password that can never be reset. What each one does, and how to back yours up before you need it."
+date: "2026-08-17"
+category: "nostr"
+tags: ["nostr public key", "nostr private key", "npub", "nsec"]
+image: "/blog/what-is-a-nostr-key.jpg"
+imageAlt: "Digital security and encryption concept."
+---
+When you create a Nostr account, you don't get a username and password. You get a cryptographic key pair. This is the most important thing to understand about Nostr, and also the thing that scares the most people off.
+
+Let me explain it in a way that makes sense.
+
+## The Key Analogy
+
+Think of it like this:
+
+- Your **npub (public key)** is your email address. Share it freely. People need it to find you, to follow you, and to verify your posts came from you.
+- Your **nsec (private key)** is the password to your email account. Never share it. Ever. In fact, think of it more like the master key to a safety deposit box. The bank doesn't have a copy. If you lose it, the box is gone.
+
+But there's one big difference from email. On Nostr, your nsec is not stored on any server. It lives only on your device. That means no company can lose it, leak it, or hand it over to a government. It also means that if you lose it, nobody can help you recover it. There is no "forgot password" on Nostr.
+
+This is a tradeoff. On one hand, your identity is genuinely yours. No platform can revoke it, suspend it, or hold it hostage. On the other hand, the responsibility is entirely on you. You are your own account recovery department. Most people find this liberating once they get used to it. A few find it terrifying. Both reactions are valid.
+
+## How Many Keys Do You Actually Need?
+
+Just one pair. Your npub and nsec are all you need to use Nostr. Every client, every relay, every feature works with the same key pair.
+
+Some advanced users create multiple key pairs for different purposes (one for posting, one for DMs, one for long-form content). This is possible because Nostr supports multiple keys linked to the same identity through NIP-26. But it's optional and most people never need it. Wisp handles one key pair by default, which is fine for 99% of users.
+
+## npub (Your Public Key), Share Freely
+
+Your npub is your Nostr address. It looks like this:
+
+```
+npub1q4yh8x7... (64 characters total)
+```
+
+Some clients, including Wisp, let you set up a human-readable handle instead using NIP-05. Instead of sharing your npub, you can share something like `you@yourdomain.com`. This is purely cosmetic, behind the scenes, it still resolves to your npub. But it's a lot easier to put in your Twitter bio.
+
+Put your npub everywhere. In your email signature. On your website. On your other social media profiles. It's how people find you on Nostr.
+
+## nsec (Your Private Key), Never Share This
+
+Your nsec is the master key to your Nostr identity. It looks like this:
+
+```
+nsec1q4yh8x7... (64 characters, starts with nsec)
+```
+
+**If someone gets your nsec, they can:**
+- Post as you
+- Delete your posts
+- Read your direct messages
+- Transfer your followers to a different account
+- Lock you out of your own identity
+
+**No legitimate service will ever ask for your nsec.** If a website, app, or person asks for it, they are trying to steal your account. Run.
+
+## How Wisp Handles Keys for You
+
+Wisp generates your key pair when you first open the app. The nsec is stored locally on your phone using Android's secure storage. It never leaves your device. Wisp cannot see your nsec.
+
+When you first create your account, Wisp will prompt you to back up your nsec. Take this seriously. The app will show you a 12-word seed phrase that can regenerate your keys. Write it down on paper and store it in a safe place. Or save it in a password manager. Or take a screenshot and encrypt it. Do something.
+
+If you lose your phone without backing up your nsec, your Nostr account is gone forever. No support ticket. No "forgot password." No recovery.
+
+## What Is NIP-05 and Do You Need One?
+
+NIP-05 is a Nostr Implementation Possibility that lets you link your npub to an internet domain. Instead of sharing your long npub string, you can share `you@yourdomain.com`.
+
+**How it works:** You create a small JSON file at `https://yourdomain.com/.well-known/nostr.json` that maps your domain to your npub. When someone searches for `you@yourdomain.com` in their Nostr client, the client fetches that JSON file and confirms it matches your npub.
+
+**Do you need it?** Not really. Your npub works fine on its own. But NIP-05 is useful for:
+
+- Making your Nostr handle look cleaner (easier to share)
+- Proving you control the domain (adds trust)
+- Getting verified in Nostr client UIs (Wisp shows a checkmark)
+
+Wisp has a built-in setup flow for NIP-05. If you own a domain, it takes about 5 minutes to set up.
+
+## Key Backup Best Practices
+
+**The minimum:** Write down your 12-word seed phrase on paper. Store it somewhere safe. A physical safe or a fireproof box is ideal.
+
+**Better:** Save your nsec in an encrypted password manager like Bitwarden, 1Password, or KeePass.
+
+**Best:** Do both. Paper backup in a safe place. Encrypted digital backup in a password manager.
+
+**Don't:** Save your nsec in a plain text file. Don't email it to yourself. Don't post it in a Discord server.
+
+## What About Key Migration?
+
+If you already have a Nostr account from another client, you can import your existing nsec into Wisp. Your follows, your posts, and your messages come with you. Your npub stays the same.
+
+To import your key: In Wisp's settings, choose "Import existing key" and paste your nsec. Wisp will import your key and start syncing from your relays.
+
+<CTA body="Download Wisp on Google Play and we'll handle your keys safely" />
+
+---
+
+**Related reading:** [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr) | [How to Set Up Your Nostr Profile](/blog/nostr-profile-setup)
+
+## Sources
+- GitHub, nostr-protocol/nostr
+- GitHub, nostr-protocol/nips (NIP-05 specification)
+- GitHub, barrydeen/wisp
+- nostr.how, "Get started with Nostr"

@@ -136,8 +136,24 @@ function validate(slug, data, file, categorySlugs) {
 
   if (typeof data.title !== "string" || !data.title.trim()) {
     fail(file, "title: required, must be a non-empty string.");
-  } else if (data.title.length > 70) {
-    fail(file, `title: ${data.title.length} chars, must be <= 70.`);
+  } else if (data.title.length > 110) {
+    // schema.org BlogPosting.headline is ignored by Google past 110 chars.
+    fail(file, `title: ${data.title.length} chars, must be <= 110.`);
+  }
+
+  // Optional: the <title> tag when the headline is too long for a SERP.
+  // The template appends " — Wisp", so keep the budget at 60.
+  if (data.seoTitle !== undefined) {
+    if (typeof data.seoTitle !== "string" || !data.seoTitle.trim()) {
+      fail(file, "seoTitle: must be a non-empty string when present.");
+    } else if (data.seoTitle.length > 60) {
+      fail(file, `seoTitle: ${data.seoTitle.length} chars, must be <= 60.`);
+    }
+  } else if (typeof data.title === "string" && data.title.length > 60) {
+    fail(
+      file,
+      `title is ${data.title.length} chars and will be truncated in search results — add a seoTitle of <= 60 chars.`,
+    );
   }
 
   if (typeof data.description !== "string" || !data.description.trim()) {
@@ -257,6 +273,7 @@ function main() {
     posts.push({
       slug,
       title: String(data.title ?? ""),
+      seoTitle: String(data.seoTitle ?? data.title ?? ""),
       description: String(data.description ?? ""),
       date: String(data.date ?? ""),
       updated: String(data.updated ?? data.date ?? ""),
@@ -268,6 +285,10 @@ function main() {
         ? data.faq.map((f) => ({ q: String(f?.q ?? ""), a: String(f?.a ?? "") }))
         : [],
       draft: data.draft === true,
+      // Articles usually place their own CTA at the editorial high point. When
+      // one is present the template suppresses its own, so a post never ends
+      // with two download blocks.
+      hasInlineCta: /<CTA[\s/>]/.test(content),
       toc,
       readingMinutes: readingMinutes(content),
     });

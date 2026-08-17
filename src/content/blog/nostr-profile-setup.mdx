@@ -1,0 +1,127 @@
+---
+title: "How to Set Up Your Nostr Profile: Photos, Bio, NIP-05, and Relay Selection"
+seoTitle: "How to Set Up Your Nostr Profile"
+description: "Photo, bio, NIP-05 verification and relay choice, in the order that matters. A complete profile turns a new npub into someone worth following."
+date: "2026-08-17"
+category: "guides"
+tags: ["nostr profile setup", "nip-05", "nostr relay list"]
+image: "/blog/nostr-profile-setup.jpg"
+imageAlt: "Abstract user profile and avatar concept."
+---
+A bare Nostr profile with a default avatar and no bio is the equivalent of a Twitter egg account. Nobody follows egg accounts. Let's make your profile look like a real person's.
+
+## Step 1: Upload a Profile Picture and Banner
+
+Open Wisp, tap your profile icon in the bottom right, then tap the edit button (pencil icon).
+
+**Profile picture.** Wisp takes photos from your camera roll. Crop it square. The image is uploaded to your configured media server. By default, Wisp uses a free Nostr blossom server. You can configure your own if you want full control. Most people use a real photo or a recognizable avatar. If you use the same avatar you use on other platforms, it makes it easier for people to find you.
+
+**Banner image.** Your banner shows at the top of your profile page. 1500x500 is a good size. Use a photo, a gradient, or leave it blank. The default is a simple color fill.
+
+**Media storage on Nostr.** Images and files aren't stored on relays. Relays are for text notes. Media is stored on blossom servers, which are separate from relays. Wisp includes a free blossom server for basic use. If you post a lot of images, you might want to set up your own or use a paid blossom service. This is one of the less talked-about aspects of Nostr, but it matters if you're a heavy media sharer.
+
+## Step 2: Write a Bio That Gets Follows
+
+Your bio shows up under your display name when people visit your profile. Good bios include:
+
+- Who you are (short version)
+- What you post about
+- Your npub (in case they need it)
+- Optional: Lightning address for zaps
+
+**Good example:**
+> Product designer. Posting about decentralized social, UX, and building in public. zaps: hello@getalby.com
+
+**Better example:**
+> Designer by trade. I build stuff for Nostr and write about the decentralized web. Find me on GitHub at @username.
+
+**Bad example:**
+> just vibing
+
+**Why not to be too vague:** Nostr doesn't have an algorithm feeding your content to strangers. People find you through specific interests. If your bio is generic, nobody knows what you post about, and they're less likely to follow you. Specificity is your friend.
+
+**Lightning address format.** If you want to receive zaps (tips), add your Lightning address. The format is you@provider.com. Services like GetAlby, Wallet of Satoshi, and Coinos provide free Lightning addresses. Wisp's Normie Mode hides all Bitcoin features by default, so if you don't want to deal with zaps, you don't have to.
+
+## Step 3: Setting Up NIP-05 Verification
+
+NIP-05 gives you a verified handle like `you@yourdomain.com`. It shows a checkmark in most Nostr clients. It's not required, but it helps people trust that you're not an impersonator and makes your handle easier to share.
+
+**If you own a domain:**
+
+1. Create a file at `https://yourdomain.com/.well-known/nostr.json`
+2. The file should contain:
+```json
+{
+  "names": {
+    "you": "npub1yourpublickeyhere..."
+  }
+}
+```
+3. Make sure the server returns the correct CORS headers. Without CORS headers, Nostr clients won't be able to fetch the file to verify you.
+4. In Wisp, go to Settings > NIP-05 and enter `you@yourdomain.com`
+
+**If you don't own a domain:**
+
+You can use a free NIP-05 service like nip05.social or nostrcheck.me. They provide a subdomain handle like `you@nip05.social`. It's not as clean as your own domain, but it works. These services generate the nostr.json file for you automatically.
+
+**Verification takes a few minutes.** Wisp will check the JSON file and confirm it matches your npub. Once confirmed, a checkmark appears next to your name.
+
+## Step 4: Choosing Relays (Don't Overthink This)
+
+Relays are the servers that store and forward Nostr messages. Wisp handles relay selection automatically using intelligent routing, it finds relays based on where the people you follow are active.
+
+If you want to customize, here's what matters:
+
+**Start with the default relays.** Wisp ships with a curated list of reliable public relays. This is enough for most people. The defaults include relay.damus.io, nos.lol, relay.primal.net, and a few others that have proven reliable over time.
+
+**Add specialty relays.** If you're interested in specific topics, there are relays for that. Bitcoin relays, art relays, local community relays. Search for "nostr relays list" and you'll find directories. Here are some examples:
+
+| Relay URL | Focus |
+|---|---|
+| wss://relay.damus.io | General, reliable |
+| wss://nos.lol | General, good uptime |
+| wss://relay.primal.net | Good connectivity |
+| wss://relay.nostr.band | Content discovery |
+| wss://eden.nostr.land | Curated, less spam |
+| wss://bitcoiner.social | Bitcoin-focused community |
+| wss://art.relay.com | Art and NFT content |
+
+**Remove slow or unreliable relays.** You can see your relay list in Wisp's settings. If a relay is consistently slow or filled with spam, remove it. Your feed will be cleaner and faster.
+
+**Run your own relay (advanced).** If you want full control, you can run a personal relay. Software options include strfry (C, fast), nostr-rs-relay (Rust), and the reference relay implementation. This is overkill for most people but gives you complete data ownership.
+
+## Step 5: Complete Your Profile Checklist
+
+Nostr profiles can include metadata that Wisp surfaces:
+
+- **Website:** Your personal site or blog. Drives traffic to whatever you're building.
+- **Lightning address:** For receiving zaps (tips). Optional, especially if Normie Mode is on.
+- **LNURL:** Alternative to Lightning address, works the same way for zaps.
+- **Display name:** Your name or handle, shown prominently.
+- **About section:** A longer version of your bio. Markdown supported.
+
+## The Complete Checklist
+
+- [ ] Profile picture uploaded (not the default)
+- [ ] Banner image uploaded (optional but recommended)
+- [ ] Bio written (specific, tells people what you post about)
+- [ ] Display name set (consistent with other platforms if possible)
+- [ ] NIP-05 verified (optional but recommended for trust)
+- [ ] Relay list reviewed (automatic is fine for most people)
+- [ ] Website linked (optional, drives traffic)
+- [ ] Lightning address set (optional, for zaps)
+- [ ] Media server configured (default is fine for light use)
+
+That's it. Your profile is ready. Now go post something.
+
+<CTA body="Download Wisp on Google Play and set up your Nostr profile in minutes" />
+
+---
+
+**Related reading:** [How to Get Started on Nostr](/blog/how-to-get-started-on-nostr) | [What Is a Nostr Key?](/blog/what-is-a-nostr-key) | [Nostr for Beginners](/blog/nostr-for-beginners)
+
+## Sources
+- GitHub, nostr-protocol/nips (NIP-05, NIP-01)
+- GitHub, barrydeen/wisp
+- nostr.how, "Get started with Nostr"
+- nostr-resources.com

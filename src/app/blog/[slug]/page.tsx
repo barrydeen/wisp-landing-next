@@ -40,8 +40,9 @@ export async function generateMetadata({
   const category = getCategory(post.category);
 
   return {
-    // The root layout's title.template appends " — Wisp".
-    title: post.title,
+    // The root layout's title.template appends " — Wisp". seoTitle keeps the
+    // SERP entry short while the on-page h1 keeps the full headline.
+    title: post.seoTitle,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: buildOpenGraph({
@@ -111,7 +112,7 @@ export default async function BlogPostPage({
           </div>
 
           <FaqSection faq={post.faq} />
-          <CTA />
+          {!post.hasInlineCta && <CTA />}
           <RelatedPosts posts={related} previous={previous} next={next} />
         </article>
 
